@@ -3,7 +3,6 @@ function twoSum (nums: number[], target: number): number[] {
   for (const k of nums.entries()) {
     const [index, value] = k
     if (dictionary[value] === undefined) {
-      console.log('asdfsf')
       dictionary[value] = [index]
     } else {
       dictionary[value].push(index)
@@ -23,3 +22,8 @@ function twoSum (nums: number[], target: number): number[] {
 }
 
 console.log(twoSum([3, 3], 6))
+const testSet = new Set()
+testSet.add([1, 2])
+testSet.add([1, 2])
+console.log(testSet)
+console.log([-1, 0, 1, 2, -1, -4].sort())

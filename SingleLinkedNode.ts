@@ -9,7 +9,7 @@ export class ListNode {
 
 
 export function createLinkedList (nums: number[]) {
-    let last = null
+    let last: ListNode | null = null
     for (let i = nums.length - 1; i >= 0; i--) {
         const node: ListNode = new ListNode(nums[i], last);
         last = node;
