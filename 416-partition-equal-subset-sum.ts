@@ -20,32 +20,17 @@ function canPartition (nums: number[]): boolean {
     }
 
     const target = Math.floor(sum / 2)
-    const aa = new Array(nums.length).fill(0).map(x => new Array(target + 1).fill(nums[0]))
-    for (let i = 0; i < nums.length; i++) {
-        aa[i][0] = 0;
-    }
+    const dpState = new Array(target + 1).fill(0)
 
-    for (let i = 1; i < nums.length; i++) {
-        for (let t = 1; t <= target; t++) {
-            if (t >= nums[i]) {
-                aa[i][t] = Math.max(aa[i - 1][t], aa[i - 1][t - nums[i]] + nums[i])
-            } else {
-                aa[i][t] = aa[i - 1][t]
-            }
+    for (let i = 0; i < nums.length; i++) {
+        for (let t = target; t >= nums[i]; t--) {
+            dpState[t] = Math.max(dpState[t], dpState[t - nums[i]] + nums[i])
         }
     }
 
-    for (let i = 0; i < nums.length; i++) {
-        console.log(aa[i])
-    }
+    console.log(dpState)
 
-    for (let i = 0; i < nums.length; i++) {
-        if (aa[i][target] === target) {
-            return true
-        }
-    }
-
-    return false;
+    return dpState[target] === target;
 };
 
 console.log(canPartition([1, 5, 11, 5]))
